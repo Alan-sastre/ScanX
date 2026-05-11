@@ -1,0 +1,293 @@
+:root {
+  --bg-deep-black: #080b0f;
+  --term-green: #00ff88;
+  --alert-red: #ff2d2d;
+  --warn-yellow: #f5c400;
+  --data-gray: #8892a4;
+  --terminal-dim: rgba(0, 255, 136, 0.15);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-deep-black);
+  color: var(--term-green);
+  line-height: 1.5;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 999;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  background: var(--bg-deep-black);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--data-gray);
+  border: 1px solid var(--term-green);
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+a {
+  color: var(--term-green);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+  background: var(--term-green);
+  color: var(--bg-deep-black);
+}
+
+button {
+  background: transparent;
+  color: var(--term-green);
+  border: 1px solid var(--term-green);
+  font-family: 'JetBrains Mono', monospace;
+  padding: 8px 16px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.1s ease;
+}
+button:hover {
+  background: var(--term-green);
+  color: var(--bg-deep-black);
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: transparent !important;
+  color: var(--data-gray) !important;
+  border-color: var(--data-gray) !important;
+}
+
+input[type="text"], input[type="file"] {
+  background: transparent;
+  border: 1px solid var(--data-gray);
+  color: var(--term-green);
+  padding: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  width: 100%;
+  outline: none;
+}
+input[type="text"]:focus {
+  border-color: var(--term-green);
+  box-shadow: 0 0 5px var(--terminal-dim);
+}
+
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch::before, .glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-deep-black);
+}
+
+.glitch::before {
+  left: 2px;
+  text-shadow: -1px 0 var(--alert-red);
+  clip: rect(24px, 550px, 90px, 0);
+  animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  left: -2px;
+  text-shadow: -1px 0 blue;
+  clip: rect(85px, 550px, 140px, 0);
+  animation: glitch-anim 2.5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+  0% { clip: rect(25px, 9999px, 86px, 0); }
+  20% { clip: rect(61px, 9999px, 57px, 0); }
+  40% { clip: rect(96px, 9999px, 17px, 0); }
+  60% { clip: rect(15px, 9999px, 50px, 0); }
+  80% { clip: rect(38px, 9999px, 98px, 0); }
+  100% { clip: rect(48px, 9999px, 2px, 0); }
+}
+
+@keyframes glitch-anim-2 {
+  0% { clip: rect(68px, 9999px, 52px, 0); }
+  20% { clip: rect(100px, 9999px, 12px, 0); }
+  40% { clip: rect(32px, 9999px, 85px, 0); }
+  60% { clip: rect(98px, 9999px, 1px, 0); }
+  80% { clip: rect(54px, 9999px, 73px, 0); }
+  100% { clip: rect(2px, 9999px, 45px, 0); }
+}
+
+/* Asymmetric Layout */
+.app-container {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  grid-template-rows: auto 1fr;
+  min-height: 100vh;
+  padding: 20px;
+  gap: 20px;
+}
+
+header {
+  grid-column: 1 / -1;
+  border-bottom: 2px solid var(--term-green);
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+}
+header::after {
+  content: "SYS.OP. [ONLINE]";
+  position: absolute;
+  right: 0;
+  top: -20px;
+  font-size: 0.8rem;
+  color: var(--data-gray);
+}
+
+.main-content {
+  border: 1px solid var(--data-gray);
+  position: relative;
+  padding: 20px;
+}
+.main-content::before {
+  content: "[ MAIN TERMINAL ]";
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  background: var(--bg-deep-black);
+  padding: 0 10px;
+  color: var(--data-gray);
+}
+
+.history-panel {
+  border-left: 1px dashed var(--data-gray);
+  padding: 10px;
+  overflow-y: auto;
+  max-height: 80vh;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.tab {
+  padding: 5px 15px;
+  border: 1px solid var(--data-gray);
+  color: var(--data-gray);
+  cursor: pointer;
+}
+.tab.active {
+  border-color: var(--term-green);
+  color: var(--term-green);
+  background: var(--terminal-dim);
+}
+
+.result-box {
+  margin-top: 20px;
+  border: 1px solid var(--term-green);
+  padding: 15px;
+  background: rgba(0, 255, 136, 0.05);
+}
+
+.result-box.danger {
+  border-color: var(--alert-red);
+  background: rgba(255, 45, 45, 0.05);
+  color: var(--alert-red);
+}
+
+.result-box.warning {
+  border-color: var(--warn-yellow);
+  background: rgba(245, 196, 0, 0.05);
+  color: var(--warn-yellow);
+}
+
+.bar-container {
+  width: 100%;
+  height: 20px;
+  background: var(--data-gray);
+  margin-top: 5px;
+  position: relative;
+}
+.bar-fill {
+  height: 100%;
+  transition: width 0.5s ease-in-out;
+}
+
+.verdict-icon {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+@media (max-width: 900px) {
+  .app-container {
+    grid-template-columns: 1fr;
+  }
+  .history-panel {
+    border-left: none;
+    border-top: 1px dashed var(--data-gray);
+    margin-top: 20px;
+    max-height: 50vh;
+  }
+}
+
+.file-drop-area {
+  border: 2px dashed var(--data-gray);
+  padding: 40px;
+  text-align: center;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.file-drop-area.active {
+  border-color: var(--term-green);
+  background: var(--terminal-dim);
+}
+
+.stats-grid {
+  display: flex;
+  gap: 20px;
+  font-size: 0.9rem;
+}
+.stat-box {
+  border: 1px solid var(--data-gray);
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: column;
+}
+.stat-label {
+  color: var(--data-gray);
+  font-size: 0.7rem;
+}
+.stat-value {
+  font-weight: bold;
+}
