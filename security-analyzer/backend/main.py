@@ -10,7 +10,7 @@ from analyzer import analyze_url, analyze_file
 
 models.Base.metadata.create_all(bind=engine)
 
-app = FastAPI(title="ScanX Security API")
+app = FastAPI(title="PHISHBLOCKER Security API")
 
 app.add_middleware(
     CORSMiddleware,

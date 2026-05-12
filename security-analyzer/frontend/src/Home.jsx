@@ -8,7 +8,7 @@ export default function Home() {
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '40px 20px' }}>
       <div style={{ textAlign: 'center', marginBottom: '50px' }}>
         <h1 style={{ fontSize: '3rem', marginBottom: '10px', textShadow: '0 0 15px var(--terminal-dim)' }}>
-          <GlitchText text="SCANX_SECURITY_NEXUS" />
+          <GlitchText text="PHISHBLOCKER_NEXUS" />
         </h1>
         <p style={{ color: 'var(--data-gray)', fontSize: '1.2rem' }}>
           Plataforma de inteligencia de amenazas e investigación táctica.

@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import ScanningTerminal from './ScanningTerminal';
 import { GetVerdictIcon } from './Icons';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 export default function FileScanner({ onComplete }) {
   const [file, setFile] = useState(null);
@@ -29,7 +30,7 @@ export default function FileScanner({ onComplete }) {
       // Simulate delay
       await new Promise(r => setTimeout(r, 2500));
 
-      const res = await fetch('http://localhost:8000/analyze/file', {
+      const res = await fetch(`${API_URL}/analyze/file`, {
         method: 'POST',
         body: formData
       });

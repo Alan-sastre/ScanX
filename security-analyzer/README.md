@@ -1,4 +1,4 @@
-# ScanX Security Analyzer
+# PHISHBLOCKER Security Analyzer
 
 Plataforma de análisis de seguridad inspirada en terminales tácticas de hackers profesionales. Analiza URLs maliciosas y archivos sospechosos en busca de amenazas mediante heurísticas y reglas de entropía/MIME.
 

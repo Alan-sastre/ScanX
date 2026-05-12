@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ScanningTerminal from './ScanningTerminal';
 import { GetVerdictIcon } from './Icons';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 export default function UrlScanner({ onComplete }) {
   const [url, setUrl] = useState('');
@@ -23,7 +24,7 @@ export default function UrlScanner({ onComplete }) {
       // Simulate network delay for effect
       await new Promise(r => setTimeout(r, 2000));
 
-      const res = await fetch('http://localhost:8000/analyze/url', {
+      const res = await fetch(`${API_URL}/analyze/url`, {
         method: 'POST',
         body: formData
       });
